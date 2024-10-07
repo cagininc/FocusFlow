@@ -25,23 +25,7 @@ To get a local copy up and running, follow these steps:
 
 Prerequisites
 Make sure you have Node.js and npm installed on your machine.
-Installation
-Clone the repo:
 
-bash
-Kodu kopyala
-git clone https://github.com/cagininc/FocusFlow.git
-Navigate to the project directory:
-
-bash
-Kodu kopyala
-cd FocusFlow
-Install the dependencies:
-
-bash
-Kodu kopyala
-npm install
-Run the development server:
 
 bash
 Kodu kopyala

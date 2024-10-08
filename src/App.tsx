@@ -1,21 +1,46 @@
 import { useState } from "react";
-import TodoItem from "./components/TodoItem";
+
 import { dummyData } from "./data/todos";
 import AddTodoForm from "./components/AddTodoForm";
 import Hero from "./components/Hero";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 import Login from "./components/Login";
+import TodoList from "./components/TodoList";
+import TodoSummary from "./components/TodoSummary";
 function App() {
+  
   const [todos, setTodos] = useState(dummyData);
 
-  function setTodoCompleted(id: number, completed: boolean) {
+  
+//function to setthe completion status of a todo
+function setTodoCompleted(id: number, completed: boolean) {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed } : todo
       )
     );
   }
+  //function to add a todo
+  function addTodo(title:string){
+setTodos(prevTodos=>[{
+
+id:prevTodos.length+1,
+title,
+completed:false
+},
+...prevTodos
+
+])
+
+
+  }
+  //function to delete todo
+  function deleteTodo(id:number){
+setTodos(prevTodos=>prevTodos.filter((todo)=>todo.id!==id))
+}
+
+function deleteAllCompleted(){}
 
   return (
     <Router>
@@ -40,8 +65,8 @@ function App() {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
-              transition={{ duration: 1}}
-            >
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+              >
               <Login />
             </motion.div>
           </AnimatePresence>
@@ -49,13 +74,13 @@ function App() {
 
         {/* Todo list route */}
         <Route path="/todos" element={
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             <motion.main
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.7 }}
-              className="py-10 bg-gray-50 h-screen space-y-5"
+               initial={{ opacity: 0, y: -10 }}   // Smaller y movement for a more subtle effect
+               animate={{ opacity: 1, y: 0 }}     // Moves back to original position smoothly
+               exit={{ opacity: 0, y: 10 }}       // Soft exit motion
+               transition={{ duration: 0.5, ease: "easeInOut" }} 
+              className="py-10 h-screen space-y-5 overflow-y-auto"
             >
               <h1 className="font-bold text-3xl text-center">FocusFlow</h1>
               <motion.div
@@ -64,23 +89,31 @@ function App() {
                 transition={{ duration: 0.5}}
                 className="max-w-lg mx-auto bg-slate-50 rounded-md p-5 space-y-6"
               >
-                <AddTodoForm />
-                <div className="space-y-2">
-                  {todos.map((todo) => (
-                    <TodoItem
-                      key={todo.id}
-                      todo={todo}
-                      onCompletedChange={setTodoCompleted}
-                    />
-                  ))}
-                </div>
+                <AddTodoForm  onSubmit={addTodo}/>
+                <TodoList 
+                onDelete={deleteTodo}
+                todos={todos}
+                onCompletedChange={setTodoCompleted}/>
+                              
+
               </motion.div>
+              
             </motion.main>
+            
           </AnimatePresence>
         } />
+        <Route path="">element={
+          
+
+          
+          }
+
+        </Route>
       </Routes>
-      
+      <TodoSummary todos={todos} deleteAllCompleted={deleteAllCompleted} />
+
     </Router>
+    
   );
 }
 

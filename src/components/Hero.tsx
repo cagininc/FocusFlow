@@ -18,7 +18,7 @@ export default function Hero(){
       </p>
       <Link to="/login">
       <motion.button
-          className="bg-white text-blue-500 px-6 py-3 rounded-md hover:bg-gray-100 transition"
+          className="bg-white text-blue-500 px-6 py-2 rounded-md hover:bg-gray-100 transition"
           whileHover={{ scale: 1.05 }} 
           whileTap={{ scale: 0.95 }}   
         >

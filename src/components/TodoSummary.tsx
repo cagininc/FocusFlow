@@ -1,5 +1,4 @@
 
-import { div } from "framer-motion/m";
 import { Todo } from "../types/todo";
 
 interface TodoSummaryProps {
@@ -22,7 +21,13 @@ return(
         {completedTodos.length}/{todos.length}todos completed
     </p>
 
+{completedTodos.length>0 &&(
+<button onClick={deleteAllCompleted} className="text-red-500 hover:underline text-sm font-medium">
+    Delete all completed Todos
+</button>
 
+
+)}
 
 
 

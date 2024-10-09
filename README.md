@@ -3,7 +3,7 @@ FocusFlow
 React + TypeScript + Vite
 
 
-FocusFlow is a modern, sleek to-do list application designed to help you stay organized and focused on your tasks. Built with TypeScript, React, and Tailwind CSS, FocusFlow provides an intuitive user experience while offering scalability and modern web development practices.
+FocusFlow is a modern, sleek to-do list application designed to help you stay organized and focused on your tasks. A task management application written in TypeScript, utilizing useState, useEffect, and custom hook structures, along with React Router, designed as a basic frontend application.
 
 🚀 Features
 Todo Management: Add, edit, and mark tasks as completed.
@@ -24,8 +24,6 @@ Routing: React Router v6
 💻 Getting Started
 To get a local copy up and running, follow these steps:
 
-Prerequisites
-Make sure you have Node.js and npm installed on your machine.
 
 
 bash

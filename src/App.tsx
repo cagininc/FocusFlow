@@ -1,6 +1,4 @@
-import { useState } from "react";
 
-import { dummyData } from "./data/todos";
 import AddTodoForm from "./components/AddTodoForm";
 import Hero from "./components/Hero";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -8,39 +6,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Login from "./components/Login";
 import TodoList from "./components/TodoList";
 import TodoSummary from "./components/TodoSummary";
+import useTodos  from "./hooks/useTodos";
+
 function App() {
-  
-  const [todos, setTodos] = useState(dummyData);
+  const {
+    todos,
+    addTodo,
+    setTodoCompleted,
+    deleteTodo,
+    deleteAllCompletedTodos,
+  } = useTodos();
 
-  
-//function to setthe completion status of a todo
-function setTodoCompleted(id: number, completed: boolean) {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed } : todo
-      )
-    );
-  }
-  //function to add a todo
-  function addTodo(title:string){
-setTodos(prevTodos=>[{
-
-id:prevTodos.length+1,
-title,
-completed:false
-},
-...prevTodos
-
-])
-
-
-  }
-  //function to delete todo
-  function deleteTodo(id:number){
-setTodos(prevTodos=>prevTodos.filter((todo)=>todo.id!==id))
-}
-
-function deleteAllCompleted(){}
 
   return (
     <Router>
@@ -94,7 +70,8 @@ function deleteAllCompleted(){}
                 onDelete={deleteTodo}
                 todos={todos}
                 onCompletedChange={setTodoCompleted}/>
-                              
+                                    <TodoSummary todos={todos} deleteAllCompleted={deleteAllCompletedTodos} />
+
 
               </motion.div>
               
@@ -110,7 +87,6 @@ function deleteAllCompleted(){}
 
         </Route>
       </Routes>
-      <TodoSummary todos={todos} deleteAllCompleted={deleteAllCompleted} />
 
     </Router>
     

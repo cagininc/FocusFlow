@@ -1,13 +1,13 @@
 
 
 import { Link } from "react-router-dom";
-
+import loginİmage from "../images/login or what.jpeg"
 export default function Login() {
   return (
     <div
       className="h-screen w-full bg-cover bg-center flex justify-center items-center"
-      style={{ backgroundImage: `url('public/images/login or what.jpeg')` }}
-    >
+      style={{ backgroundImage: `url(${loginİmage})` }}
+      >
       <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-md max-w-md w-full">
         <h1 className="text-3xl font-bold mb-6 text-center">Login to FocusFlow</h1>
         <div

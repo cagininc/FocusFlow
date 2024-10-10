@@ -1,6 +1,8 @@
 
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import focusFlowhero from '../images/focusFlowhero.jpeg';
+
 export default function Hero(){
 
 
@@ -8,7 +10,7 @@ export default function Hero(){
     return(
         <section
         className="hero h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col justify-evenly items-center "
-        style={{ backgroundImage: `url('public/images/focusFlowhero.jpeg')` }}
+        style={{ backgroundImage: `url(${focusFlowhero})` }}
         >
       <h1 className="text-3xl font-bold text-white mb-20">
      
